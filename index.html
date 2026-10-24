@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Кофейня «Тёплый угол» — демо-лендинг</title>
+<meta name="description" content="Демо-лендинг кофейни: адаптивная вёрстка, меню, отзывы, форма бронирования столика.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#faf6f1; --surface:#fff; --ink:#2b1d14; --muted:#7a6a5e;
+    --accent:#b5651d; --accent-ink:#fff; --line:#eadfd3; --dark:#1f150f;
+    --radius:16px; --shadow:0 10px 30px rgba(43,29,20,.08);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  .wrap{width:min(1120px,100% - 32px);margin-inline:auto}
+  h1,h2,h3{font-family:"Playfair Display",Georgia,serif;line-height:1.15}
+  h2{font-size:clamp(28px,4vw,40px);margin-bottom:12px}
+  .lead{color:var(--muted);max-width:560px}
+  section{padding:88px 0}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:999px;font-weight:600;border:2px solid var(--accent);transition:.2s;cursor:pointer;font-size:16px}
+  .btn-primary{background:var(--accent);color:var(--accent-ink)}
+  .btn-primary:hover{background:#9a5418;border-color:#9a5418}
+  .btn-ghost{color:#fff;border-color:rgba(255,255,255,.7)}
+  .btn-ghost:hover{background:rgba(255,255,255,.12)}
+
+  /* header */
+  header{position:fixed;inset:0 0 auto;z-index:50;transition:.25s}
+  header.scrolled{background:rgba(250,246,241,.95);backdrop-filter:blur(8px);box-shadow:0 1px 0 var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .logo{font-family:"Playfair Display",serif;font-size:22px;font-weight:700;color:#fff}
+  header.scrolled .logo,header.scrolled .menu a{color:var(--ink)}
+  .menu{display:flex;gap:28px}
+  .menu a{color:#fff;font-weight:500;opacity:.9}
+  .menu a:hover{opacity:1;color:var(--accent)}
+  .burger{display:none;background:none;border:0;width:40px;height:40px;cursor:pointer}
+  .burger span{display:block;height:2px;background:#fff;margin:7px 6px;transition:.2s}
+  header.scrolled .burger span{background:var(--ink)}
+
+  /* hero */
+  .hero{min-height:100vh;display:grid;place-items:center;text-align:center;color:#fff;padding:120px 0 80px;
+    background:linear-gradient(rgba(31,21,15,.55),rgba(31,21,15,.7)),url("https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1800&q=70") center/cover}
+  .hero h1{font-size:clamp(40px,7vw,76px);margin-bottom:18px}
+  .hero p{font-size:clamp(17px,2vw,20px);max-width:620px;margin:0 auto 34px;opacity:.92}
+  .hero .actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .badges{display:flex;gap:32px;justify-content:center;margin-top:56px;flex-wrap:wrap}
+  .badges b{display:block;font-family:"Playfair Display",serif;font-size:30px}
+  .badges small{opacity:.8}
+
+  /* features */
+  .features{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+  .card{background:var(--surface);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow)}
+  .icon{width:52px;height:52px;border-radius:14px;background:#f4e6d8;display:grid;place-items:center;font-size:26px;margin-bottom:16px}
+  .card h3{font-size:22px;margin-bottom:8px}
+  .card p{color:var(--muted)}
+
+  /* menu */
+  .tabs{display:flex;gap:10px;margin:32px 0 28px;flex-wrap:wrap}
+  .tab{padding:10px 20px;border-radius:999px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font:inherit;font-weight:500}
+  .tab.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .menu-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px 40px}
+  .item{display:flex;align-items:baseline;gap:12px;padding:14px 0;border-bottom:1px dashed var(--line)}
+  .item h4{font-size:18px;font-weight:600}
+  .item p{color:var(--muted);font-size:14px}
+  .item .dots{flex:1}
+  .item .price{font-weight:600;color:var(--accent);white-space:nowrap}
+
+  /* gallery */
+  .gallery{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:220px 220px;gap:14px;margin-top:36px}
+  .gallery div{border-radius:var(--radius);background-size:cover;background-position:center}
+  .gallery div:first-child{grid-row:span 2}
+
+  /* reviews */
+  .reviews{background:var(--dark);color:#fff}
+  .reviews .lead{color:#c9b8aa}
+  .rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+  .rev{background:#2c2018;border-radius:var(--radius);padding:28px}
+  .stars{color:#f0b35a;letter-spacing:2px;margin-bottom:12px}
+  .rev footer{margin-top:16px;color:#c9b8aa;font-size:14px}
+
+  /* booking */
+  .booking{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+  form{background:var(--surface);padding:32px;border-radius:var(--radius);box-shadow:var(--shadow);display:grid;gap:16px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  label{font-size:14px;font-weight:500;display:grid;gap:6px}
+  input,select{font:inherit;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink)}
+  input:focus,select:focus{outline:2px solid var(--accent);border-color:transparent}
+  .err{color:#b3261e;font-size:13px;min-height:0}
+  .ok{display:none;background:#e8f5e9;color:#1b5e20;padding:14px;border-radius:10px}
+  .info p{margin-bottom:10px}
+  .info b{display:inline-block;min-width:90px}
+  .map{margin-top:20px;border-radius:var(--radius);overflow:hidden;height:240px;width:100%;border:0;background:#e9dfd4}
+
+  .site-footer{background:var(--dark);color:#c9b8aa;padding:32px 0;font-size:14px}
+  .site-footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+  .reveal{opacity:0;transform:translateY(24px);transition:.7s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  @media (max-width:860px){
+    .menu{position:fixed;inset:72px 0 auto;background:var(--bg);flex-direction:column;padding:24px;gap:18px;transform:translateY(-130%);transition:.3s;box-shadow:var(--shadow)}
+    .menu.open{transform:none}
+    .menu a{color:var(--ink)}
+    .burger{display:block}
+    .features,.rev-grid{grid-template-columns:1fr}
+    .menu-grid{grid-template-columns:1fr}
+    .booking{grid-template-columns:1fr}
+    .gallery{grid-template-columns:1fr 1fr;grid-template-rows:180px 180px 180px}
+    .gallery div:first-child{grid-column:span 2;grid-row:auto}
+    section{padding:64px 0}
+  }
+  @media (max-width:480px){.row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header id="top">
+  <div class="wrap nav">
+    <a href="#" class="logo">Тёплый угол</a>
+    <nav class="menu" id="menu">
+      <a href="#about">О нас</a>
+      <a href="#menu-sec">Меню</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#booking">Бронь</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <h1>Кофе, ради которого<br>стоит проснуться</h1>
+    <p>Обжариваем зерно сами, печём круассаны каждое утро и знаем постоянных гостей по имени.</p>
+    <div class="actions">
+      <a href="#booking" class="btn btn-primary">Забронировать столик</a>
+      <a href="#menu-sec" class="btn btn-ghost">Смотреть меню</a>
+    </div>
+    <div class="badges">
+      <div><b>12</b><small>сортов зерна</small></div>
+      <div><b>7:30</b><small>открываемся</small></div>
+      <div><b>4.9★</b><small>средняя оценка</small></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <h2 class="reveal">Почему к нам возвращаются</h2>
+    <p class="lead reveal">Небольшая кофейня в центре города: без спешки, с хорошей музыкой и розетками у каждого стола.</p>
+    <div class="features">
+      <div class="card reveal"><div class="icon">☕</div><h3>Своя обжарка</h3><p>Свежее зерно каждую неделю — от классики до яркой фильтр-обжарки.</p></div>
+      <div class="card reveal"><div class="icon">🥐</div><h3>Выпечка с утра</h3><p>Круассаны, синнабоны и чизкейки готовим на месте, а не размораживаем.</p></div>
+      <div class="card reveal"><div class="icon">💻</div><h3>Можно поработать</h3><p>Быстрый Wi-Fi, тихий зал и розетки — удобно для встреч и работы.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="menu-sec" style="background:var(--surface)">
+  <div class="wrap">
+    <h2 class="reveal">Меню</h2>
+    <p class="lead reveal">Цены актуальны на сегодня. Альтернативное молоко — без доплаты.</p>
+    <div class="tabs" id="tabs">
+      <button class="tab active" data-cat="coffee">Кофе</button>
+      <button class="tab" data-cat="tea">Чай и другое</button>
+      <button class="tab" data-cat="food">Выпечка</button>
+    </div>
+    <div class="menu-grid" id="menu-grid"></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 class="reveal">Атмосфера</h2>
+    <div class="gallery reveal">
+      <div style="background-image:url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1000&q=60')"></div>
+      <div style="background-image:url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600&q=60')"></div>
+      <div style="background-image:url('https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=600&q=60')"></div>
+      <div style="background-image:url('https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=600&q=60')"></div>
+      <div style="background-image:url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=600&q=60')"></div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews" class="reviews">
+  <div class="wrap">
+    <h2 class="reveal">Что говорят гости</h2>
+    <p class="lead reveal">Примеры отзывов (демо-контент).</p>
+    <div class="rev-grid">
+      <div class="rev reveal"><div class="stars">★★★★★</div><p>Лучший флэт уайт в районе. Хожу каждое утро перед работой.</p><footer>— Анна</footer></div>
+      <div class="rev reveal"><div class="stars">★★★★★</div><p>Уютно, тихо, отличный Wi-Fi. Провёл тут полдня с ноутбуком.</p><footer>— Дмитрий</footer></div>
+      <div class="rev reveal"><div class="stars">★★★★☆</div><p>Круассаны — огонь. Иногда очередь, но оно того стоит.</p><footer>— Мария</footer></div>
+    </div>
+  </div>
+</section>
+
+<section id="booking">
+  <div class="wrap booking">
+    <div class="info reveal">
+      <h2>Забронировать столик</h2>
+      <p class="lead" style="margin-bottom:24px">Оставьте заявку — перезвоним в течение 10 минут и подтвердим бронь.</p>
+      <p><b>Адрес</b> ул. Примерная, 10</p>
+      <p><b>Часы</b> ежедневно 7:30 – 22:00</p>
+      <p><b>Телефон</b> +7 (900) 000-00-00</p>
+      <iframe class="map" title="Карта" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=37.605%2C55.752%2C37.625%2C55.762&amp;layer=mapnik"></iframe>
+    </div>
+    <form id="form" class="reveal" novalidate>
+      <label>Имя<input name="name" placeholder="Как к вам обращаться" required></label>
+      <label>Телефон<input name="phone" type="tel" placeholder="+7 (___) ___-__-__" required></label>
+      <div class="row">
+        <label>Дата<input name="date" type="date" required></label>
+        <label>Время<select name="time" required></select></label>
+      </div>
+      <label>Гостей<select name="guests"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5+</option></select></label>
+      <div class="err" id="err"></div>
+      <button class="btn btn-primary" type="submit">Отправить заявку</button>
+      <div class="ok" id="ok">Спасибо! Заявка принята — мы скоро перезвоним.</div>
+    </form>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>© Тёплый угол. Демо-проект для портфолио, кофейня вымышленная.</span>
+    <a href="#top">Наверх ↑</a>
+  </div>
+</footer>
+
+<script>
+  const MENU = {
+    coffee: [
+      ["Эспрессо", "30 мл, моносорт дня", 140],
+      ["Американо", "250 мл", 170],
+      ["Капучино", "300 мл, молоко или растительное", 220],
+      ["Флэт уайт", "двойной ристретто, 200 мл", 240],
+      ["Раф ванильный", "300 мл, сливки, ваниль", 270],
+      ["Фильтр V60", "зерно на выбор, 300 мл", 230],
+    ],
+    tea: [
+      ["Чай листовой", "чайник 500 мл", 250],
+      ["Матча латте", "300 мл", 290],
+      ["Какао с маршмеллоу", "300 мл", 240],
+      ["Лимонад домашний", "400 мл, сезонный вкус", 260],
+    ],
+    food: [
+      ["Круассан классический", "сливочное масло 82%", 150],
+      ["Синнабон", "с корицей и сливочным кремом", 210],
+      ["Чизкейк Нью-Йорк", "кусок 130 г", 280],
+      ["Сэндвич с индейкой", "чиабатта, соус песто", 320],
+    ],
+  };
+  const grid = document.getElementById("menu-grid");
+  function renderMenu(cat){
+    grid.innerHTML = MENU[cat].map(([n,d,p]) =>
+      `<div class="item"><div><h4>${n}</h4><p>${d}</p></div><span class="dots"></span><span class="price">${p} ₽</span></div>`
+    ).join("");
+  }
+  document.getElementById("tabs").addEventListener("click", e => {
+    const b = e.target.closest(".tab"); if (!b) return;
+    document.querySelectorAll(".tab").forEach(t => t.classList.toggle("active", t === b));
+    renderMenu(b.dataset.cat);
+  });
+  renderMenu("coffee");
+
+  // Header background on scroll, mobile menu
+  const header = document.getElementById("top"), menu = document.getElementById("menu");
+  const onScroll = () => header.classList.toggle("scrolled", scrollY > 40);
+  addEventListener("scroll", onScroll); onScroll();
+  document.getElementById("burger").onclick = () => menu.classList.toggle("open");
+  menu.addEventListener("click", e => { if (e.target.tagName === "A") menu.classList.remove("open"); });
+
+  // Reveal on scroll
+  const io = new IntersectionObserver(es => es.forEach(x => { if (x.isIntersecting) { x.target.classList.add("in"); io.unobserve(x.target); } }), {threshold:.15});
+  document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+
+  // Booking form
+  const form = document.getElementById("form");
+  const timeSel = form.time;
+  for (let h = 8; h <= 21; h++) for (const m of ["00","30"]) timeSel.add(new Option(`${h}:${m}`));
+  form.date.min = new Date().toISOString().slice(0,10);
+  form.phone.addEventListener("input", e => {
+    let d = e.target.value.replace(/\D/g,"").replace(/^8/,"7"); if (d && d[0] !== "7") d = "7" + d;
+    d = d.slice(0,11); const p = [d.slice(1,4), d.slice(4,7), d.slice(7,9), d.slice(9,11)];
+    e.target.value = d ? `+7 (${p[0]}${p[0].length===3?") ":""}${p[1]}${p[1].length===3?"-":""}${p[2]}${p[2].length===2?"-":""}${p[3]}` : "";
+  });
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    const err = document.getElementById("err");
+    if (form.name.value.trim().length < 2) return err.textContent = "Укажите имя";
+    if (form.phone.value.replace(/\D/g,"").length !== 11) return err.textContent = "Проверьте номер телефона";
+    if (!form.date.value) return err.textContent = "Выберите дату";
+    err.textContent = "";
+    form.querySelector("button").style.display = "none";
+    document.getElementById("ok").style.display = "block";
+  });
+</script>
+</body>
+</html>
