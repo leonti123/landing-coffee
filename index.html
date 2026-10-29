@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Утро на Фонтанке — кофейня со своей обжаркой в Санкт-Петербурге</title>
-<meta name="description" content="Кофейня со своей обжаркой у Фонтанки: предзаказ навынос за 10 минут, свежая выпечка с 7:30, бронь столика, каждый 7-й кофе в подарок.">
+<title>Утро на Фонтанке — концепт сайта кофейни с предзаказом</title>
+<meta name="description" content="Концепт сайта кофейни для портфолио: предзаказ навынос за 10 минут, свежая выпечка с 7:30, бронь столика, каждый 7-й кофе в подарок.">
 <meta name="theme-color" content="#2b1d14">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -183,6 +183,11 @@
 
   .toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,calc(100% + 40px));visibility:hidden;background:var(--ink);color:#fff;padding:14px 20px;border-radius:14px;font-size:15px;z-index:90;transition:.3s;max-width:calc(100% - 32px);text-align:center}
   .toast.show{transform:translate(-50%,0);visibility:visible}
+  .copybox{position:fixed;inset:0;z-index:95;background:rgba(31,21,15,.55);display:none;align-items:center;justify-content:center;padding:16px}
+  .copybox.show{display:flex}
+  .copybox .in{background:var(--surface);border-radius:var(--radius);padding:22px;width:min(460px,100%);display:grid;gap:12px}
+  .concept{display:inline-flex;align-items:center;gap:8px;background:rgba(240,179,90,.18);border:1px solid rgba(240,179,90,.5);color:#f6d29b;padding:6px 14px;border-radius:999px;font-size:13px;margin:0 10px 22px 0}
+  .concept a{color:#fff;text-decoration:underline}
 
   .reveal{opacity:0;transform:translateY(24px);transition:.7s ease}
   .reveal.in{opacity:1;transform:none}
@@ -265,6 +270,7 @@
 
 <section class="hero">
   <div class="wrap">
+    <div class="concept">Концепт сайта для кофейни, сделан для <a href="https://leonti123.github.io/" target="_blank" rel="noopener">портфолио</a></div>
     <div class="status" id="status"><i></i><span>Открыто</span></div>
     <h1>Кофе со своей обжаркой в двух минутах от Невского</h1>
     <p>Закажите онлайн по дороге, и стакан будет ждать на стойке без очереди. Круассаны печём с 7:30, зерно обжариваем каждую среду.</p>
@@ -273,7 +279,7 @@
       <a href="#book" class="btn btn-ghost">Забронировать столик</a>
     </div>
     <div class="badges">
-      <div><b>4.9</b><small>312 оценок на Яндекс Картах</small></div>
+      <div><b>12</b><small>сортов зерна в наличии</small></div>
       <div><b>10 мин</b><small>готовим предзаказ</small></div>
       <div><b>с 7:30</b><small>по будням</small></div>
     </div>
@@ -387,9 +393,9 @@
     <div class="rev-head">
       <div>
         <span class="kicker">Отзывы</span>
-        <h2 class="reveal">Что пишут гости на Яндекс Картах</h2>
+        <h2 class="reveal">Так может выглядеть блок отзывов</h2>
+        <p class="lead reveal">В рабочем сайте здесь будут настоящие отзывы гостей, например из Яндекс Карт, вместе с ответами кофейни</p>
       </div>
-      <div class="score reveal"><b>4.9</b><div><span class="stars">★★★★★</span><small>312 оценок, 128 отзывов</small></div></div>
     </div>
     <div class="rev-grid">
       <div class="rev reveal">
@@ -419,17 +425,15 @@
       <span class="kicker">Контакты</span>
       <h2 class="reveal">Как нас найти</h2>
       <div class="info">
-        <div><svg class="ico"><use href="#i-pin"/></svg><p>наб. реки Фонтанки, 40<small>м. Гостиный двор или Маяковская, 5 минут пешком</small></p></div>
+        <div><svg class="ico"><use href="#i-pin"/></svg><p>У Фонтанки, рядом с Невским<small>адрес условный: здесь будет ваш адрес и как дойти от метро</small></p></div>
         <div><svg class="ico"><use href="#i-clock"/></svg><p>Пн–Пт 7:30–22:00, Сб–Вс 9:00–22:00<small>предзаказ принимаем до 21:45</small></p></div>
         <div><svg class="ico"><use href="#i-phone"/></svg><p><a href="tel:+79119496835">+7 911 949-68-35</a><small>звонок или WhatsApp</small></p></div>
       </div>
       <div class="soc">
         <a href="https://wa.me/79119496835" target="_blank" rel="noopener"><svg class="ico" style="color:var(--wa)"><use href="#i-wa"/></svg>WhatsApp</a>
         <a href="https://vk.com/ileonti" target="_blank" rel="noopener"><svg class="ico" style="color:var(--vk)"><use href="#i-vk"/></svg>ВКонтакте</a>
-        <a href="https://yandex.ru/maps/?pt=30.3444,59.9337&z=17&l=map" target="_blank" rel="noopener"><svg class="ico" style="color:#fc3f1d"><use href="#i-pin"/></svg>Яндекс Карты</a>
-        <a href="https://2gis.ru/spb/geo/30.3444%2C59.9337" target="_blank" rel="noopener"><svg class="ico" style="color:#19aa1e"><use href="#i-pin"/></svg>2ГИС</a>
       </div>
-      <iframe class="map" title="Карта" loading="lazy" src="https://yandex.ru/map-widget/v1/?ll=30.3444%2C59.9337&z=16&pt=30.3444%2C59.9337%2Cpm2brm"></iframe>
+      <iframe class="map" title="Карта" loading="lazy" src="https://yandex.ru/map-widget/v1/?ll=30.3444%2C59.9337&z=15"></iframe>
     </div>
 
     <form class="book reveal" id="book" novalidate>
@@ -463,6 +467,17 @@
 </footer>
 
 <div class="toast" id="toast"></div>
+
+<div class="copybox" id="copybox" role="dialog" aria-label="Текст заказа">
+  <div class="in">
+    <b>Скопируйте текст и отправьте его в чат ВКонтакте</b>
+    <textarea readonly rows="8"></textarea>
+    <div class="send">
+      <button class="btn btn-vk" type="button" id="copy-open"><svg class="ico"><use href="#i-vk"/></svg>Скопировать и открыть</button>
+      <button class="btn btn-line" type="button" id="copy-close">Закрыть</button>
+    </div>
+  </div>
+</div>
 
 <script>
   const WA_PHONE = "79119496835";
@@ -584,11 +599,23 @@
   const toast = msg => { const t = document.getElementById("toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove("show"), 4500); };
   function sendTo(via, text){
     if (via === "wa") { window.open(`https://wa.me/${WA_PHONE}?text=${encodeURIComponent(text)}`, "_blank"); return; }
-    // VK can't prefill a message, so copy it and open the chat
-    (navigator.clipboard ? navigator.clipboard.writeText(text) : Promise.reject()).then(
-      () => toast("Текст скопирован, вставьте его в чат ВКонтакте"),
-      () => toast("Откройте чат и напишите заказ в сообщении"));
-    window.open(VK_CHAT, "_blank");
+    // VK can't prefill a message. Copy synchronously while the page still has focus:
+    // the async Clipboard API fails once window.open moves focus to the new tab
+    if (copyNow(text)) { toast("Текст заказа скопирован, вставьте его в чат ВКонтакте"); window.open(VK_CHAT, "_blank"); }
+    else showCopy(text);
+  }
+  function copyNow(text){
+    const ta = document.createElement("textarea");
+    ta.value = text; ta.setAttribute("readonly", ""); ta.style.cssText = "position:fixed;top:0;left:0;opacity:0";
+    document.body.appendChild(ta); ta.select(); ta.setSelectionRange(0, text.length);
+    let ok = false; try { ok = document.execCommand("copy"); } catch (e) {}
+    ta.remove(); return ok;
+  }
+  // Fallback when the browser blocks copying: show the text so it can be copied by hand
+  function showCopy(text){
+    const box = document.getElementById("copybox");
+    box.querySelector("textarea").value = text; box.classList.add("show");
+    box.querySelector("textarea").select();
   }
   const checkContact = (f, err) => {
     if (f.name.value.trim().length < 2) return err.textContent = "Укажите имя", false;
@@ -620,6 +647,8 @@
     if ([...sel.options].some(x => x.value === prev)) sel.value = prev;
   }
   book.date.addEventListener("change", fillBookTimes); fillBookTimes();
+  // Too late to book today: start from tomorrow
+  if (!book.time.value) { const t = new Date(now.date + "T12:00"); t.setDate(t.getDate() + 1); book.date.value = t.toISOString().slice(0, 10); fillBookTimes(); }
   book.addEventListener("submit", e => {
     e.preventDefault();
     const err = document.getElementById("book-err");
@@ -640,6 +669,13 @@
   document.getElementById("burger").onclick = () => menu.classList.toggle("open");
   menu.addEventListener("click", e => { if (e.target.tagName === "A") menu.classList.remove("open"); });
   document.getElementById("cart-bar").onclick = () => cartEl.classList.add("open");
+  const copybox = document.getElementById("copybox");
+  document.getElementById("copy-close").onclick = () => copybox.classList.remove("show");
+  document.getElementById("copy-open").onclick = () => {
+    const ta = copybox.querySelector("textarea"); ta.select();
+    try { document.execCommand("copy"); } catch (e) {}
+    copybox.classList.remove("show"); window.open(VK_CHAT, "_blank");
+  };
   document.getElementById("cart-close").onclick = () => cartEl.classList.remove("open");
 
   const io = new IntersectionObserver(es => es.forEach(x => { if (x.isIntersecting) { x.target.classList.add("in"); io.unobserve(x.target); } }), {threshold: .12});
