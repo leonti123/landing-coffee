@@ -58,7 +58,7 @@
 
   /* hero */
   .hero{min-height:100vh;display:grid;align-items:center;color:#fff;padding:120px 0 72px;
-    background:linear-gradient(90deg,rgba(31,21,15,.85),rgba(31,21,15,.45)),url("https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=1800&q=70") center/cover}
+    background:linear-gradient(90deg,rgba(31,21,15,.85),rgba(31,21,15,.45)),url("img/1501339847302-ac426a4a7cbb-1800.jpg") center/cover}
   .status{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);padding:7px 14px;border-radius:999px;font-size:14px;margin-bottom:22px}
   .status i{width:9px;height:9px;border-radius:50%;background:#7ee08a;box-shadow:0 0 0 4px rgba(126,224,138,.25)}
   .status.closed i{background:#ffb4a2;box-shadow:0 0 0 4px rgba(255,180,162,.25)}
@@ -121,7 +121,7 @@
 
   /* roast */
   .roast{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center}
-  .roast-img{border-radius:24px;overflow:hidden;aspect-ratio:5/4;background:url("https://images.unsplash.com/photo-1511920170033-f8396924c348?w=1100&q=65") center/cover}
+  .roast-img{border-radius:24px;overflow:hidden;aspect-ratio:5/4;background:url("img/1511920170033-f8396924c348-1100.jpg") center/cover}
   .facts{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
   .fact{background:var(--surface);border-radius:14px;padding:18px;box-shadow:var(--shadow)}
   .fact b{display:block;font-family:"Playfair Display",serif;font-size:26px;color:var(--accent)}
@@ -379,11 +379,11 @@
     <span class="kicker">Атмосфера</span>
     <h2 class="reveal">Тихий зал, летняя веранда и запах выпечки</h2>
     <div class="gallery reveal">
-      <div style="background-image:url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1000&q=60')" role="img" aria-label="Зал кофейни"></div>
-      <div style="background-image:url('https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=600&q=60')" role="img" aria-label="Фильтр-кофе"></div>
-      <div style="background-image:url('https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=600&q=60')" role="img" aria-label="Летняя веранда"></div>
-      <div style="background-image:url('https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=600&q=60')" role="img" aria-label="Круассаны"></div>
-      <div style="background-image:url('https://images.unsplash.com/photo-1453614512568-c4024d13c247?w=600&q=60')" role="img" aria-label="Барная стойка"></div>
+      <div style="background-image:url('img/1554118811-1e0d58224f24-1000.jpg')" role="img" aria-label="Зал кофейни"></div>
+      <div style="background-image:url('img/1442512595331-e89e73853f31-600.jpg')" role="img" aria-label="Фильтр-кофе"></div>
+      <div style="background-image:url('img/1559925393-8be0ec4767c8-600.jpg')" role="img" aria-label="Летняя веранда"></div>
+      <div style="background-image:url('img/1555507036-ab1f4038808a-600.jpg')" role="img" aria-label="Круассаны"></div>
+      <div style="background-image:url('img/1453614512568-c4024d13c247-600.jpg')" role="img" aria-label="Барная стойка"></div>
     </div>
   </div>
 </section>
@@ -482,7 +482,7 @@
 <script>
   const WA_PHONE = "79119496835";
   const VK_CHAT = "https://vk.me/ileonti";
-  const img = (id, w = 500) => `https://images.unsplash.com/photo-${id}?w=${w}&h=${Math.round(w * .75)}&fit=crop&q=60`;
+  const img = id => `img/${id}.jpg`;
 
   // [id, name, description, price, photo, sizes] - sizes are [label, extra price]
   const CUP = [["250 мл", 0], ["350 мл", 50]];
